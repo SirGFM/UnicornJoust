@@ -98,8 +98,9 @@ GameObject:
   - 33: {fileID: 149320311}
   - 23: {fileID: 149320310}
   - 61: {fileID: 149320312}
+  - 114: {fileID: 149320313}
   m_Layer: 0
-  m_Name: Joust1
+  m_Name: Joust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,6 +162,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
+--- !u!114 &149320313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149320308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475ecdce2285f844d9dc2ca0e258316d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &450191548
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,8 +184,9 @@ GameObject:
   - 33: {fileID: 450191552}
   - 23: {fileID: 450191551}
   - 61: {fileID: 450191550}
+  - 114: {fileID: 450191553}
   m_Layer: 0
-  m_Name: Lance2
+  m_Name: Lance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,6 +248,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 450191548}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &450191553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 450191548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475ecdce2285f844d9dc2ca0e258316d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &760680467
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,8 +270,9 @@ GameObject:
   - 33: {fileID: 760680470}
   - 23: {fileID: 760680469}
   - 61: {fileID: 760680471}
+  - 114: {fileID: 760680472}
   m_Layer: 0
-  m_Name: Joust2
+  m_Name: Joust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,6 +334,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
+--- !u!114 &760680472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 760680467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475ecdce2285f844d9dc2ca0e258316d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1014444126
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,8 +356,9 @@ GameObject:
   - 33: {fileID: 1014444130}
   - 23: {fileID: 1014444129}
   - 61: {fileID: 1014444128}
+  - 114: {fileID: 1014444131}
   m_Layer: 0
-  m_Name: Lance1
+  m_Name: Lance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -383,6 +420,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1014444126}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1014444131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1014444126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475ecdce2285f844d9dc2ca0e258316d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1070669204
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,8 +570,9 @@ GameObject:
   - 23: {fileID: 1338713053}
   - 33: {fileID: 1338713052}
   - 58: {fileID: 1338713054}
+  - 114: {fileID: 1338713055}
   m_Layer: 0
-  m_Name: Unicorn2
+  m_Name: Unicorn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,6 +634,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .5
+--- !u!114 &1338713055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1338713050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475ecdce2285f844d9dc2ca0e258316d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1841040717
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,8 +742,9 @@ GameObject:
   - 23: {fileID: 2131144807}
   - 33: {fileID: 2131144806}
   - 58: {fileID: 2131144808}
+  - 114: {fileID: 2131144809}
   m_Layer: 0
-  m_Name: Unicorn1
+  m_Name: Unicorn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -745,3 +806,14 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .5
+--- !u!114 &2131144809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2131144804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475ecdce2285f844d9dc2ca0e258316d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
