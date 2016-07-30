@@ -111,7 +111,7 @@ public class Player : MonoBehaviour {
 		this.updateAxis();
 	}
 
-	/** Called on a fixed interval */
+	/** Called on a fixed interval (once per physical update) */
 	void FixedUpdate() {
 		/* Update angle */
 		if (Input.GetAxisRaw (this._moveAxis) < -deadzone) {
@@ -125,7 +125,13 @@ public class Player : MonoBehaviour {
 		}
 		/* Update forward movement */
 		if (Input.GetAxisRaw(this._boostAxis) > deadzone) {
-			this.rb.AddRelativeForce(new Vector2(this.acceleration * Time.fixedDeltaTime, 0.0f), 0);
+			Vector2 force = Vector2.zero;
+			float ang = Mathf.Deg2Rad * this.transform.eulerAngles.z;
+			/* Manually rotate the applied force, to separate it from the sprite */
+			force.x = Mathf.Cos(ang);
+			force.y = Mathf.Sin(ang);
+			force *= this.acceleration * Time.fixedDeltaTime;
+			this.rb.AddForce(force);
 		}
 		/* Cap speed */
 		if (this.rb.velocity.sqrMagnitude > this.maxVelocity * this.maxVelocity) {
@@ -137,6 +143,22 @@ public class Player : MonoBehaviour {
 			if (this._curInvulnerability < 0.0f) {
 				this._curInvulnerability = 0.0f;
 			}
+		}
+	}
+
+	/** Called on a variable interval (sync'ed with the draw rate) */
+	void Update() {
+		/* Try to keep the joust toward the screen's top */
+		if (this.transform.eulerAngles.z < 270.0f && 
+		    	this.transform.eulerAngles.z > 90.0f) {
+			Vector3 s = this.transform.localScale;
+			s.y = -1.0f;
+			this.transform.localScale = s;
+		}
+		else {
+			Vector3 s = this.transform.localScale;
+			s.y = 1.0f;
+			this.transform.localScale = s;
 		}
 	}
 }
