@@ -4,7 +4,7 @@ using System.Collections;
 public class LimitArea : MonoBehaviour {
 
 	/** Radius of the playable field */
-	static float radius = 8.5f;
+	static float radius = 7.5f;
 
 	private Rigidbody2D _rb;
 
