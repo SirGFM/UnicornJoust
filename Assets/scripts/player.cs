@@ -31,6 +31,11 @@ public class Player : MonoBehaviour {
 	private string _moveAxis;
 	private string _boostAxis;
 	private int _curHealth;
+	public int curHealth {
+		get {
+			return this._curHealth;
+		}
+	}
 	private float _curInvulnerability;
 
 	/** === PUBLIC FUNCTION ===================================================== */
