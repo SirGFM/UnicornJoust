@@ -25,6 +25,10 @@ public class Player : MonoBehaviour {
 	public float spinVelocity = 270.0f;
 	/** Input deadzone (0.0f == perfectly-centered, 1.0f == maximum-reach) */
 	public float deadzone = 0.3f;
+	/** For how long should the player move faster (on powerup) */
+	public float timeToGoFast = 3.5f;
+	/** How much faster can the object go */
+	public float fastRate = 2.0f;
 	public enController controller = enController.CONTROLLER_1;
 
 	private Rigidbody2D rb;
@@ -40,6 +44,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 	private float _curInvulnerability;
+	private bool _doGoFast = false;
 
 	/** === PUBLIC FUNCTION ===================================================== */
 
@@ -113,6 +118,17 @@ public class Player : MonoBehaviour {
 		return this._curHealth > 0;
 	}
 
+	public void goFast() {
+		this.StartCoroutine(this._gottaGoFast());
+	}
+	private IEnumerator _gottaGoFast() {
+		Debug.Log("You're too slow");
+		this._doGoFast = true;
+		yield return new WaitForSeconds(this.timeToGoFast);
+		this._doGoFast = false;
+		Debug.Log("Gotta go fast again... :(");
+	}
+
 	/** === UNITY EVENTS ======================================================== */
 
 	/** Called as soon as the component is instantiated */
@@ -126,6 +142,7 @@ public class Player : MonoBehaviour {
 
 	/** Called on a fixed interval (once per physical update) */
 	void FixedUpdate() {
+		float maxv;
 		/* Update angle */
 		if (Input.GetAxisRaw (this._moveAxis) < -deadzone) {
 			this.rb.angularVelocity = this.spinVelocity;
@@ -147,8 +164,12 @@ public class Player : MonoBehaviour {
 			this.rb.AddForce(force);
 		}
 		/* Cap speed */
-		if (this.rb.velocity.sqrMagnitude > this.maxVelocity * this.maxVelocity) {
-			this.rb.velocity = this.rb.velocity.normalized * this.maxVelocity;
+		maxv = this.maxVelocity;
+		if (this._doGoFast) {
+			maxv *= this.fastRate;
+		}
+		if (this.rb.velocity.sqrMagnitude > maxv * maxv ) {
+			this.rb.velocity = this.rb.velocity.normalized * maxv;
 		}
 		/* Update the invulnerability */
 		if (this._curInvulnerability > 0.0f) {

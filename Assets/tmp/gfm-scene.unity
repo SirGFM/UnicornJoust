@@ -530,6 +530,8 @@ MonoBehaviour:
   maxVelocity: 3
   spinVelocity: 270
   deadzone: .300000012
+  timeToGoFast: 3.5
+  fastRate: 2
   controller: 1
 --- !u!4 &1304807564
 Transform:
@@ -637,6 +639,8 @@ MonoBehaviour:
   maxVelocity: 3
   spinVelocity: 270
   deadzone: .300000012
+  timeToGoFast: 3.5
+  fastRate: 2
   controller: 2
 --- !u!114 &1558981631
 MonoBehaviour:
