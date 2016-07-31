@@ -40,9 +40,9 @@ public class Powerup : MonoBehaviour {
 		this.StartCoroutine(this.disappearTimer());
 	}
 
-	void OnEnterCollision2D(Collider2D col) {
+	void OnCollisionEnter2D(Collision2D col) {
 		/* Since the player will handle the collision, simply destroy the powerup */
-		if (col.CompareTag("player")) {
+		if (col.gameObject.CompareTag("player")) {
 			GameObject.Destroy(this.gameObject);
 		}
 	}
