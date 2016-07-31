@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
 	public enController controller = enController.CONTROLLER_1;
 
 	private Rigidbody2D rb;
+	private Powerup _pup;
 	private string _moveAxis;
 	private string _boostAxis;
 	private string _itemButton;
@@ -71,6 +72,7 @@ public class Player : MonoBehaviour {
 	 * Try to get a powerup
 	 */
 	public bool hit(PowerupType col) {
+		this._pup = col.getPowerup();
 		return false;
 	}
 
@@ -159,9 +161,17 @@ public class Player : MonoBehaviour {
 
 	/** Called on a variable interval (sync'ed with the draw rate) */
 	void Update() {
+		/* Try to use the current item */
 		if (Input.GetAxisRaw(this._itemButton) > this.deadzone) {
 			if (this._itemNotPressed) {
-				Debug.Log("HEY! LISTEN!!!!");
+				if (this._pup != null) {
+					this._pup.use(this.gameObject);
+					this._pup = null;
+				}
+				else {
+					/* TODO Signal error! */
+					Debug.LogWarning("No items!");
+				}
 			}
 			this._itemNotPressed = false;
 		}

@@ -9,6 +9,7 @@ public class PowerupType : MonoBehaviour {
 		POWERUP_FORCE_FIELD,
 		POWERUP_EXTRA_SPEED,
 		POWERUP_DELAY_ZONE,
+		POWERUP_HEALTH,
 		POWERUP_TRON,
 	}
 
@@ -32,6 +33,20 @@ public class PowerupType : MonoBehaviour {
 		/* TODO Play animation */
 		GameObject.Destroy(this.gameObject);
 	}
+
+	/** === PUBLIC FUNCTION ===================================================== */
+
+	/** Get a "usable" powerup reference */
+	public Powerup getPowerup() {
+		switch (this.type) {
+			case Type.POWERUP_DELAY_ZONE: return new PowerupDelayZone();
+			case Type.POWERUP_EXTRA_SPEED: return new PowerupExtraSpeed();
+			case Type.POWERUP_FORCE_FIELD: return new PowerupForceField();
+			default: return null;
+		}
+	}
+
+	/** === UNITY EVENTS ======================================================== */
 
 	/** Called after the object gets activated, but only once per script */
 	void Start() {
