@@ -20,9 +20,9 @@ public class Player : MonoBehaviour {
 	/** Acceleration in some weird unit */
 	public float acceleration = 0.5f;
 	/** Max velocity in units/s */
-	public float maxVelocity = 1.5f;
+	public float maxVelocity = 3f;
 	/** Spin rate in degree/s (theoretically) */
-	public float spinVelocity = 90.0f;
+	public float spinVelocity = 270.0f;
 	/** Input deadzone (0.0f == perfectly-centered, 1.0f == maximum-reach) */
 	public float deadzone = 0.3f;
 	public enController controller = enController.CONTROLLER_1;
