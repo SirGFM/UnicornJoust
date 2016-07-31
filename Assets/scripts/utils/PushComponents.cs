@@ -3,8 +3,11 @@ using System.Collections;
 
 public class PushComponents : MonoBehaviour {
 
+	/** For how long it should last */
+	public float time = 10.0f;
 	/** Force to be applied */
-	private float _force;
+	public float force = 0.125f;
+
 	/** Game object to be ignored */
 	private GameObject _ignore;
 
@@ -16,14 +19,11 @@ public class PushComponents : MonoBehaviour {
 	/**
 	 * Start a push force field
 	 * 
-	 * @param  [ in]force  Force to be applied
-	 * @param  [ in]time   For how long it should last
 	 * @param  [ in]ignore Game object to be ignored
 	 */
-	public void start(float force, float time, GameObject ignore) {
-		this.StartCoroutine(this.timer (time));
+	public void start(GameObject ignore) {
+		this.StartCoroutine(this.timer(this.time));
 		this._ignore = ignore;
-		this._force = force;
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -52,7 +52,7 @@ public class PushComponents : MonoBehaviour {
 		}
 		if (rb != null) {
 			Vector3 norm = (other.transform.position - this.transform.position).normalized;
-			rb.AddForce(norm * this._force * Time.fixedDeltaTime);
+			rb.AddForce(norm * this.force * Time.fixedDeltaTime);
 		}
 	}
 }

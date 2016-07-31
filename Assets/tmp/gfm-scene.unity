@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12b603bbe79b1cf41a6955fd9ce826f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceFieldPrefab: {fileID: 11473114, guid: f53b91e11b663ca4d9c9589a15474863, type: 2}
   minTime: .25
   maxTime: .5
   powerups:
@@ -503,6 +504,7 @@ GameObject:
   - 50: {fileID: 1304807566}
   - 114: {fileID: 1304807565}
   - 114: {fileID: 1304807563}
+  - 114: {fileID: 1304807567}
   m_Layer: 0
   m_Name: Player
   m_TagString: player
@@ -571,6 +573,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1304807567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1304807562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b248d20b645b834eade652155e85a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &1558981628
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +596,7 @@ GameObject:
   - 50: {fileID: 1558981632}
   - 114: {fileID: 1558981631}
   - 114: {fileID: 1558981630}
+  - 114: {fileID: 1558981633}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: player
@@ -650,6 +665,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1558981633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1558981628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b248d20b645b834eade652155e85a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &1644803289
 GameObject:
   m_ObjectHideFlags: 0

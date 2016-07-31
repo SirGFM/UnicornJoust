@@ -3,6 +3,12 @@ using System.Collections;
 
 public class SpawnPowerup : MonoBehaviour {
 
+	/** === POWERUP PARAMETERS ================================================== */
+
+	public PushComponents forceFieldPrefab;
+
+	/** === =============== ===================================================== */
+
 	/** Minimum time between updates in seconds */
 	public float minTime = 5.0f;
 	/** Maximum time between updates in seconds */
@@ -36,6 +42,8 @@ public class SpawnPowerup : MonoBehaviour {
 	/** Called after the object gets activated, but only once per script */
 	void Start () {
 		this._isSpawning = false;
+
+		PowerupForceField.prefab = this.forceFieldPrefab;
 	}
 
 	/** Called on a variable interval (sync'ed with the draw rate) */
