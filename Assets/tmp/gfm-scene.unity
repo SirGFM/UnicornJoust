@@ -185,6 +185,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 238555896}
+  - 114: {fileID: 238555897}
   m_Layer: 0
   m_Name: Powerup Spawner
   m_TagString: Untagged
@@ -204,6 +205,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &238555897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 238555895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12b603bbe79b1cf41a6955fd9ce826f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTime: 1
+  maxTime: 3
+  powerups:
+  - {fileID: 125376, guid: 9cc06735974ac6f4ab61c96719dd1150, type: 2}
+  - {fileID: 177704, guid: 244067d3a3fd748429692009878ef9bc, type: 2}
+  - {fileID: 195560, guid: c3a999cb92240a74d9625415011473ab, type: 2}
 --- !u!1 &894438283
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +525,7 @@ MonoBehaviour:
   invulnerability: 2
   acceleration: .5
   maxVelocity: 3
-  spinVelocity: 135
+  spinVelocity: 270
   deadzone: .300000012
   controller: 1
 --- !u!4 &1304807564
@@ -517,7 +535,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1304807562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.17000008, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2131144805}
@@ -546,7 +564,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1304807562}
   m_Mass: 9.99999975e-05
   m_LinearDrag: 0
-  m_AngularDrag: 10
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -578,7 +596,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1558981628}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -1.62920685e-07}
-  m_LocalPosition: {x: 2.17000008, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: -1, z: 1}
   m_Children:
   - {fileID: 989940304}
@@ -601,7 +619,7 @@ MonoBehaviour:
   invulnerability: 2
   acceleration: .5
   maxVelocity: 3
-  spinVelocity: 135
+  spinVelocity: 270
   deadzone: .300000012
   controller: 2
 --- !u!114 &1558981631
@@ -625,7 +643,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1558981628}
   m_Mass: 9.99999975e-05
   m_LinearDrag: 0
-  m_AngularDrag: 10
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -782,7 +800,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

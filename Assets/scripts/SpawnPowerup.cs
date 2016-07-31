@@ -7,7 +7,7 @@ public class SpawnPowerup : MonoBehaviour {
 	public float minTime = 5.0f;
 	/** Maximum time between updates in seconds */
 	public float maxTime = 8.0f;
-	public GameObject[] powerups;
+	public Powerup[] powerups;
 
 	/** Flag to control polling */
 	private bool _isSpawning;
@@ -21,9 +21,11 @@ public class SpawnPowerup : MonoBehaviour {
 		int i;
 		/* Wait the desired time and spawn a new powerup */
 		yield return new WaitForSeconds(delay);
-		i = Random.Range(0, powerups.Length);
-		if (i < powerups.Length) {
-			/* TODO Spawn it! */
+		i = Random.Range(0, this.powerups.Length);
+		if (i < this.powerups.Length && this.powerups[i] != null) {
+			Vector2 pos = Random.insideUnitCircle * 0.85f;
+			Powerup pup = GameObject.Instantiate<Powerup>(this.powerups[i]);
+			pup.transform.position = pos * LimitArea.radius;
 		}
 		/* Unqueue the powerup */
 		this._isSpawning = false;
