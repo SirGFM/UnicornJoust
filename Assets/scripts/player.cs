@@ -122,11 +122,9 @@ public class Player : MonoBehaviour {
 		this.StartCoroutine(this._gottaGoFast());
 	}
 	private IEnumerator _gottaGoFast() {
-		Debug.Log("You're too slow");
 		this._doGoFast = true;
 		yield return new WaitForSeconds(this.timeToGoFast);
 		this._doGoFast = false;
-		Debug.Log("Gotta go fast again... :(");
 	}
 
 	/** === UNITY EVENTS ======================================================== */
