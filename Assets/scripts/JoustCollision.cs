@@ -28,11 +28,15 @@ public class JoustCollision : BaseCollision {
 	void OnCollisionEnter2D(Collision2D otherCol) {
 		BaseCollision other = otherCol.collider.GetComponent<BaseCollision>();
 		if (other != null) {
-			this.self.hit(other);
+			bool hit = this.self.hit(other);
 			if (!this.self.isAlive()) {
 				this.self.disableJount();
 				this.detach();
 			}
+			//else if (hit && otherCol.collider.CompareTag ("lance")) {
+			//	self.contactDam(otherCol.contacts[0].point);
+			//}
+			
 			return;
 		}
 	}

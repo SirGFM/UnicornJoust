@@ -38,7 +38,11 @@ public class Player : MonoBehaviour {
 	}
 	private float _curInvulnerability;
 
+	public bool canControl;
+
+	//Particles
 	public GameObject expl;
+	public GameObject dam;
 
 	/** === PUBLIC FUNCTION ===================================================== */
 
@@ -95,6 +99,7 @@ public class Player : MonoBehaviour {
 				this.pushback(other.velocity);
 			}
 		}
+
 		return true;
 	}
 
@@ -117,6 +122,13 @@ public class Player : MonoBehaviour {
 		gameObject.SetActive(false);
 	}
 
+	public void contactDam(Vector2 contact){
+		//Create particle for damage received
+		GameObject g = Instantiate(dam, contact, Quaternion.identity) as GameObject;
+		Destroy(g, 1f);
+	}
+		
+
 	/** === UNITY EVENTS ======================================================== */
 
 	/** Called as soon as the component is instantiated */
@@ -129,26 +141,27 @@ public class Player : MonoBehaviour {
 
 	/** Called on a fixed interval (once per physical update) */
 	void FixedUpdate() {
-		
-		/* Update angle */
-		if (Input.GetAxisRaw (this._moveAxis) < -deadzone) {
-			this.rb.angularVelocity = this.spinVelocity;
-		}
-		else if (Input.GetAxisRaw (this._moveAxis) > deadzone) {
-			this.rb.angularVelocity = -this.spinVelocity;
-		}
-		else {
-			this.rb.angularVelocity = 0;
-		}
-		/* Update forward movement */
-		if (Input.GetAxisRaw(this._boostAxis) > deadzone) {
-			Vector2 force = Vector2.zero;
-			float ang = Mathf.Deg2Rad * this.transform.eulerAngles.z;
-			/* Manually rotate the applied force, to separate it from the sprite */
-			force.x = Mathf.Cos(ang);
-			force.y = Mathf.Sin(ang);
-			force *= this.acceleration * Time.fixedDeltaTime;
-			this.rb.AddForce(force);
+		if(this.isAlive() && this.canControl){
+			/* Update angle */
+			if (Input.GetAxisRaw (this._moveAxis) < -deadzone) {
+				this.rb.angularVelocity = this.spinVelocity;
+			}
+			else if (Input.GetAxisRaw (this._moveAxis) > deadzone) {
+				this.rb.angularVelocity = -this.spinVelocity;
+			}
+			else {
+				this.rb.angularVelocity = 0;
+			}
+			/* Update forward movement */
+			if (Input.GetAxisRaw(this._boostAxis) > deadzone) {
+				Vector2 force = Vector2.zero;
+				float ang = Mathf.Deg2Rad * this.transform.eulerAngles.z;
+				/* Manually rotate the applied force, to separate it from the sprite */
+				force.x = Mathf.Cos(ang);
+				force.y = Mathf.Sin(ang);
+				force *= this.acceleration * Time.fixedDeltaTime;
+				this.rb.AddForce(force);
+			}
 		}
 		/* Cap speed */
 		if (this.rb.velocity.sqrMagnitude > this.maxVelocity * this.maxVelocity) {
