@@ -1,0 +1,13 @@
+TO DO LIST
+
+=> Criar itens coletáveis ///////////////////////////////////////////
+=> Criar campo de força <-GFM
+=> Fazer player morrer ///////////////////////////////////////////////
+=> Fazer controlador geral ///////////////////////////////////////////
+=> Fazer partículas de dano //////////////////////////////////////////
+=> Fazer frame pra arena /////////////////////////////////////////////
+=> Fazer contagem regressiva pra começar
+=> Fazer HUD com vidas
+=> Fazer tela inicial
+=> Consertar players catapultados em certas colisões 
+

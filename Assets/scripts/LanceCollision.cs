@@ -5,7 +5,8 @@ public class LanceCollision : BaseCollision {
 	
 	void OnCollisionEnter2D(Collision2D otherCol) {
 		BaseCollision other;
-
+		//Lance contact effect
+		self.contactDam(otherCol.contacts[0].point);
 		/* Ignore collision against other lances */
 		if (otherCol.collider.CompareTag ("lance")) {
 			Rigidbody2D orb = otherCol.gameObject.GetComponent<Rigidbody2D>();

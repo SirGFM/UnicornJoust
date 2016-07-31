@@ -48,6 +48,12 @@ public class Player : MonoBehaviour {
 	private float _curInvulnerability;
 	private bool _doGoFast = false;
 
+	public bool canControl;
+
+	//Particles
+	public GameObject expl;
+	public GameObject dam;
+
 	/** === PUBLIC FUNCTION ===================================================== */
 
 	/** Update the axis controllers to the assigned one */
@@ -112,6 +118,7 @@ public class Player : MonoBehaviour {
 				this.pushback(other.velocity);
 			}
 		}
+
 		return true;
 	}
 
@@ -119,6 +126,7 @@ public class Player : MonoBehaviour {
 	public bool isAlive() {
 		return this._curHealth > 0;
 	}
+
 
 	public void goFast() {
 		this.StartCoroutine(this._gottaGoFast());
@@ -129,6 +137,26 @@ public class Player : MonoBehaviour {
 		this._doGoFast = false;
 	}
 
+	//Disable all elements
+	public void disableJount(){
+		foreach(Collider2D col in GetComponentsInChildren<Collider2D>())
+			col.enabled = false;	
+		rb.angularVelocity = Random.Range(1, 10) * 30.0f;
+	}
+
+	//Set inactive all elements and play death animation
+	public void die(){
+		GameObject g = Instantiate(expl, transform.position, Quaternion.identity) as GameObject;
+		Destroy(g, 2f);
+		gameObject.SetActive(false);
+	}
+
+	public void contactDam(Vector2 contact){
+		//Create particle for damage received
+		GameObject g = Instantiate(dam, contact, Quaternion.identity) as GameObject;
+		Destroy(g, 1f);
+	}
+		
 	/** === UNITY EVENTS ======================================================== */
 
 	/** Called as soon as the component is instantiated */
@@ -144,24 +172,27 @@ public class Player : MonoBehaviour {
 	void FixedUpdate() {
 		float maxv;
 		/* Update angle */
-		if (Input.GetAxisRaw (this._moveAxis) < -deadzone) {
-			this.rb.angularVelocity = this.spinVelocity;
-		}
-		else if (Input.GetAxisRaw (this._moveAxis) > deadzone) {
-			this.rb.angularVelocity = -this.spinVelocity;
-		}
-		else {
-			this.rb.angularVelocity = 0;
-		}
-		/* Update forward movement */
-		if (Input.GetAxisRaw(this._boostAxis) > deadzone) {
-			Vector2 force = Vector2.zero;
-			float ang = Mathf.Deg2Rad * this.transform.eulerAngles.z;
-			/* Manually rotate the applied force, to separate it from the sprite */
-			force.x = Mathf.Cos(ang);
-			force.y = Mathf.Sin(ang);
-			force *= this.acceleration * Time.fixedDeltaTime;
-			this.rb.AddForce(force);
+		if(this.isAlive() && this.canControl){
+            if (Input.GetAxisRaw (this._moveAxis) < -deadzone) {
+                this.rb.angularVelocity = this.spinVelocity;
+            }
+            else if (Input.GetAxisRaw (this._moveAxis) > deadzone) {
+                this.rb.angularVelocity = -this.spinVelocity;
+            }
+            else {
+                this.rb.angularVelocity = 0;
+            }
+            /* Update forward movement */
+            if (Input.GetAxisRaw(this._boostAxis) > deadzone) {
+                Vector2 force = Vector2.zero;
+                float ang = Mathf.Deg2Rad * this.transform.eulerAngles.z;
+                /* Manually rotate the applied force, to separate it from
+                 * the sprite */
+                force.x = Mathf.Cos(ang);
+                force.y = Mathf.Sin(ang);
+                force *= this.acceleration * Time.fixedDeltaTime;
+                this.rb.AddForce(force);
+            }
 		}
 		/* Cap speed */
 		maxv = this.maxVelocity;
@@ -199,6 +230,8 @@ public class Player : MonoBehaviour {
 		else {
 			this._itemNotPressed = true;
 		}
+		if(!this.isAlive())
+			return;		
 		/* Try to keep the joust toward the screen's top */
 		if (this.transform.eulerAngles.z < 270.0f && 
 		    	this.transform.eulerAngles.z > 90.0f) {
@@ -211,5 +244,7 @@ public class Player : MonoBehaviour {
 			s.y = 1.0f;
 			this.transform.localScale = s;
 		}
+
+
 	}
 }
