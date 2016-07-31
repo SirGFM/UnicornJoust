@@ -30,6 +30,8 @@ public class Player : MonoBehaviour {
 	private Rigidbody2D rb;
 	private string _moveAxis;
 	private string _boostAxis;
+	private string _itemButton;
+	private bool _itemNotPressed;
 	private int _curHealth;
 	public int curHealth {
 		get {
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour {
 	public void updateAxis() {
 		this._moveAxis = ((int)controller).ToString() + "-movement";
 		this._boostAxis = ((int)controller).ToString() + "-boost";
+		this._itemButton = ((int)controller).ToString() + "-item";
 	}
 
 	/**
@@ -62,6 +65,13 @@ public class Player : MonoBehaviour {
 			time += Time.fixedDeltaTime;
 			yield return null;
 		}
+	}
+
+	/**
+	 * Try to get a powerup
+	 */
+	public bool hit(Powerup col) {
+		return false;
 	}
 
 	/**
@@ -108,6 +118,7 @@ public class Player : MonoBehaviour {
 		this.rb = this.GetComponent<Rigidbody2D>();
 		this._curHealth = this.initialHealth;
 		this._curInvulnerability = 0.0f;
+		this._itemNotPressed = false;
 		this.updateAxis();
 	}
 
@@ -148,6 +159,15 @@ public class Player : MonoBehaviour {
 
 	/** Called on a variable interval (sync'ed with the draw rate) */
 	void Update() {
+		if (Input.GetAxisRaw(this._itemButton) > this.deadzone) {
+			if (this._itemNotPressed) {
+				Debug.Log("HEY! LISTEN!!!!");
+			}
+			this._itemNotPressed = false;
+		}
+		else {
+			this._itemNotPressed = true;
+		}
 		/* Try to keep the joust toward the screen's top */
 		if (this.transform.eulerAngles.z < 270.0f && 
 		    	this.transform.eulerAngles.z > 90.0f) {
