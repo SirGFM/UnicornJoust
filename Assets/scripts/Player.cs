@@ -11,7 +11,9 @@ public class Player : MonoBehaviour {
 	 */
 	public enum enController {
 		CONTROLLER_1 = 1,
-		CONTROLLER_2 = 2
+		CONTROLLER_2 = 2,
+		CONTROLLER_3 = 3,
+		CONTROLLER_4 = 4
 	}
 
 	public int initialHealth = 2;
