@@ -1,0 +1,7 @@
+TO DO LIST
+
+=> Criar itens coletáveis <-GFM
+=> Fazer player morrer ///////////////////////////////////////////////
+=> Fazer controlador geral
+=> Consertar players catapultados em certas colisões 
+

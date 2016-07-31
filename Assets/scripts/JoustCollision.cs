@@ -30,6 +30,7 @@ public class JoustCollision : BaseCollision {
 		if (other != null) {
 			this.self.hit(other);
 			if (!this.self.isAlive()) {
+				this.self.disableJount();
 				this.detach();
 			}
 			return;

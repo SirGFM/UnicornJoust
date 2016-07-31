@@ -38,6 +38,8 @@ public class Player : MonoBehaviour {
 	}
 	private float _curInvulnerability;
 
+	public GameObject expl;
+
 	/** === PUBLIC FUNCTION ===================================================== */
 
 	/** Update the axis controllers to the assigned one */
@@ -101,6 +103,20 @@ public class Player : MonoBehaviour {
 		return this._curHealth > 0;
 	}
 
+	//Disable all elements
+	public void disableJount(){
+		foreach(Collider2D col in GetComponentsInChildren<Collider2D>())
+			col.enabled = false;	
+		rb.angularVelocity = Random.Range(1, 10) * 30.0f;
+	}
+
+	//Set inactive all elements and play death animation
+	public void die(){
+		GameObject g = Instantiate(expl, transform.position, Quaternion.identity) as GameObject;
+		Destroy(g, 2f);
+		gameObject.SetActive(false);
+	}
+
 	/** === UNITY EVENTS ======================================================== */
 
 	/** Called as soon as the component is instantiated */
@@ -113,6 +129,7 @@ public class Player : MonoBehaviour {
 
 	/** Called on a fixed interval (once per physical update) */
 	void FixedUpdate() {
+		
 		/* Update angle */
 		if (Input.GetAxisRaw (this._moveAxis) < -deadzone) {
 			this.rb.angularVelocity = this.spinVelocity;
@@ -148,6 +165,8 @@ public class Player : MonoBehaviour {
 
 	/** Called on a variable interval (sync'ed with the draw rate) */
 	void Update() {
+		if(!this.isAlive())
+			return;		
 		/* Try to keep the joust toward the screen's top */
 		if (this.transform.eulerAngles.z < 270.0f && 
 		    	this.transform.eulerAngles.z > 90.0f) {
@@ -160,5 +179,7 @@ public class Player : MonoBehaviour {
 			s.y = 1.0f;
 			this.transform.localScale = s;
 		}
+
+
 	}
 }

@@ -14,6 +14,10 @@ public class UnicornCollision : BaseCollision {
 		BaseCollision other = otherCol.collider.GetComponent<BaseCollision>();
 		if (other != null) {
 			this.self.hit(other);
+			if (!this.self.isAlive()) {
+				//Play death animation 1 (explosion)
+				self.die();
+			}
 			return;
 		}
 	}
