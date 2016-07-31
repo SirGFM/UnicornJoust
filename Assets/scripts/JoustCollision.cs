@@ -3,9 +3,6 @@ using System.Collections;
 
 public class JoustCollision : BaseCollision {
 
-	/** Reference to the parenting player */
-	private Player self;
-
 	/** Detach this player from its parent */
 	private void detach() {
 		Rigidbody2D rb;
@@ -19,10 +16,6 @@ public class JoustCollision : BaseCollision {
 		this.gameObject.GetComponent<Collider2D>().enabled = false;
 		/* Enable the knight to loop onto the playfield */
 		this.gameObject.AddComponent<LimitArea>();
-	}
-	
-	void Awake() {
-		this.self = this.GetComponentInParent<Player>();
 	}
 	
 	void OnCollisionEnter2D(Collision2D otherCol) {

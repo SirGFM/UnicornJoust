@@ -11,7 +11,9 @@ public class Player : MonoBehaviour {
 	 */
 	public enum enController {
 		CONTROLLER_1 = 1,
-		CONTROLLER_2 = 2
+		CONTROLLER_2 = 2,
+		CONTROLLER_3 = 3,
+		CONTROLLER_4 = 4
 	}
 
 	public int initialHealth = 2;
@@ -20,16 +22,23 @@ public class Player : MonoBehaviour {
 	/** Acceleration in some weird unit */
 	public float acceleration = 0.5f;
 	/** Max velocity in units/s */
-	public float maxVelocity = 1.5f;
+	public float maxVelocity = 3f;
 	/** Spin rate in degree/s (theoretically) */
-	public float spinVelocity = 90.0f;
+	public float spinVelocity = 270.0f;
 	/** Input deadzone (0.0f == perfectly-centered, 1.0f == maximum-reach) */
 	public float deadzone = 0.3f;
+	/** For how long should the player move faster (on powerup) */
+	public float timeToGoFast = 3.5f;
+	/** How much faster can the object go */
+	public float fastRate = 2.0f;
 	public enController controller = enController.CONTROLLER_1;
 
 	private Rigidbody2D rb;
+	private Powerup _pup;
 	private string _moveAxis;
 	private string _boostAxis;
+	private string _itemButton;
+	private bool _itemNotPressed;
 	private int _curHealth;
 	public int curHealth {
 		get {
@@ -37,6 +46,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 	private float _curInvulnerability;
+	private bool _doGoFast = false;
 
 	/** === PUBLIC FUNCTION ===================================================== */
 
@@ -44,6 +54,7 @@ public class Player : MonoBehaviour {
 	public void updateAxis() {
 		this._moveAxis = ((int)controller).ToString() + "-movement";
 		this._boostAxis = ((int)controller).ToString() + "-boost";
+		this._itemButton = ((int)controller).ToString() + "-item";
 	}
 
 	/**
@@ -62,6 +73,14 @@ public class Player : MonoBehaviour {
 			time += Time.fixedDeltaTime;
 			yield return null;
 		}
+	}
+
+	/**
+	 * Try to get a powerup
+	 */
+	public bool hit(PowerupType col) {
+		this._pup = col.getPowerup();
+		return false;
 	}
 
 	/**
@@ -101,6 +120,15 @@ public class Player : MonoBehaviour {
 		return this._curHealth > 0;
 	}
 
+	public void goFast() {
+		this.StartCoroutine(this._gottaGoFast());
+	}
+	private IEnumerator _gottaGoFast() {
+		this._doGoFast = true;
+		yield return new WaitForSeconds(this.timeToGoFast);
+		this._doGoFast = false;
+	}
+
 	/** === UNITY EVENTS ======================================================== */
 
 	/** Called as soon as the component is instantiated */
@@ -108,11 +136,13 @@ public class Player : MonoBehaviour {
 		this.rb = this.GetComponent<Rigidbody2D>();
 		this._curHealth = this.initialHealth;
 		this._curInvulnerability = 0.0f;
+		this._itemNotPressed = false;
 		this.updateAxis();
 	}
 
 	/** Called on a fixed interval (once per physical update) */
 	void FixedUpdate() {
+		float maxv;
 		/* Update angle */
 		if (Input.GetAxisRaw (this._moveAxis) < -deadzone) {
 			this.rb.angularVelocity = this.spinVelocity;
@@ -134,8 +164,12 @@ public class Player : MonoBehaviour {
 			this.rb.AddForce(force);
 		}
 		/* Cap speed */
-		if (this.rb.velocity.sqrMagnitude > this.maxVelocity * this.maxVelocity) {
-			this.rb.velocity = this.rb.velocity.normalized * this.maxVelocity;
+		maxv = this.maxVelocity;
+		if (this._doGoFast) {
+			maxv *= this.fastRate;
+		}
+		if (this.rb.velocity.sqrMagnitude > maxv * maxv ) {
+			this.rb.velocity = this.rb.velocity.normalized * maxv;
 		}
 		/* Update the invulnerability */
 		if (this._curInvulnerability > 0.0f) {
@@ -148,6 +182,23 @@ public class Player : MonoBehaviour {
 
 	/** Called on a variable interval (sync'ed with the draw rate) */
 	void Update() {
+		/* Try to use the current item */
+		if (Input.GetAxisRaw(this._itemButton) > this.deadzone) {
+			if (this._itemNotPressed) {
+				if (this._pup != null) {
+					this._pup.use(this.gameObject);
+					this._pup = null;
+				}
+				else {
+					/* TODO Signal error! */
+					Debug.LogWarning("No items!");
+				}
+			}
+			this._itemNotPressed = false;
+		}
+		else {
+			this._itemNotPressed = true;
+		}
 		/* Try to keep the joust toward the screen's top */
 		if (this.transform.eulerAngles.z < 270.0f && 
 		    	this.transform.eulerAngles.z > 90.0f) {

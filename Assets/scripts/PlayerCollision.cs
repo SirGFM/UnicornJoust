@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UnicornCollision : BaseCollision {
+public class PlayerCollision : BaseCollision {
 
 	void OnCollisionEnter2D(Collision2D otherCol) {
-		BaseCollision other = otherCol.collider.GetComponent<BaseCollision>();
+		PowerupType other;
+
+		other = otherCol.collider.GetComponent<PowerupType>();
 		if (other != null) {
 			this.self.hit(other);
 			return;
