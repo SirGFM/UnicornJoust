@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Powerup : MonoBehaviour {
+public class PowerupType : MonoBehaviour {
 
 	/** Enumerate the powerup types */
 	public enum Type {

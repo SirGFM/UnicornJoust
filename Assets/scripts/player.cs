@@ -70,7 +70,7 @@ public class Player : MonoBehaviour {
 	/**
 	 * Try to get a powerup
 	 */
-	public bool hit(Powerup col) {
+	public bool hit(PowerupType col) {
 		return false;
 	}
 
