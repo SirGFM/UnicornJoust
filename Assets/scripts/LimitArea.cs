@@ -15,11 +15,10 @@ public class LimitArea : MonoBehaviour {
 	void Update() {
 		float r2 = LimitArea.radius * LimitArea.radius;
 		if (this.transform.position.sqrMagnitude > r2) {
-			Vector2 norm = this.transform.position.normalized * Time.deltaTime;
-			this.transform.position *= -1.0f;
-			/* Apply a slight force toward the center of the playfield,
-			 * to push it outside the border */
-			this._rb.AddForce(norm);
+			/* Place the object slightly toward the the inner area, to avoid
+			 * corner cases */
+			this.transform.position = this.transform.position.normalized
+					* -0.95f * radius;
 		}
 	}
 }

@@ -17,6 +17,8 @@ public class JoustCollision : BaseCollision {
 		rb.velocity = this.self.GetComponent<Rigidbody2D>().velocity;
 		/* Disable collision with this collider */
 		this.gameObject.GetComponent<Collider2D>().enabled = false;
+		/* Enable the knight to loop onto the playfield */
+		this.gameObject.AddComponent<LimitArea>();
 	}
 	
 	void Awake() {
