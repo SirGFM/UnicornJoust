@@ -6,6 +6,7 @@ public class SpawnPowerup : MonoBehaviour {
 	/** === POWERUP PARAMETERS ================================================== */
 
 	public PushComponents forceFieldPrefab;
+	public SlowComponents delayZonePrefab;
 
 	/** === =============== ===================================================== */
 
@@ -44,6 +45,7 @@ public class SpawnPowerup : MonoBehaviour {
 		this._isSpawning = false;
 
 		PowerupForceField.prefab = this.forceFieldPrefab;
+		PowerupDelayZone.prefab = this.delayZonePrefab;
 	}
 
 	/** Called on a variable interval (sync'ed with the draw rate) */

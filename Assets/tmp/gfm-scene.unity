@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceFieldPrefab: {fileID: 11473114, guid: f53b91e11b663ca4d9c9589a15474863, type: 2}
+  delayZonePrefab: {fileID: 11497894, guid: a4767481672d6a9428708538673f7527, type: 2}
   minTime: .25
   maxTime: .5
   powerups:
