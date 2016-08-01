@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 
 	private bool matchOver;
 
-
+	public string level = "game";
 
 
 	public bool OnePlayerAlive(){
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour {
 	}
  
 	public void Restart(){
-		Application.LoadLevel("tico-scene");
+		Application.LoadLevel(level);
 	}
 
 

@@ -4,7 +4,7 @@ using System.Collections;
 public class LimitArea : MonoBehaviour {
 
 	/** Radius of the playable field */
-	public const float radius = 12f;
+	public const float radius = 8.5f;
 
 	void Update() {
 		float r2 = LimitArea.radius * LimitArea.radius;
