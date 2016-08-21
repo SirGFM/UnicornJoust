@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour {
 	public UnityEngine.UI.Text txtWinner;
 	public UnityEngine.UI.Text countdown;
 
-	private bool matchOver;
-
 	public string level = "game";
 
 
@@ -88,7 +86,6 @@ public class GameManager : MonoBehaviour {
 
 	void Awake () {
 		players = GameObject.FindObjectsOfType<Player>();
-		matchOver = false;
 	}
 
 	void Start(){
@@ -97,10 +94,9 @@ public class GameManager : MonoBehaviour {
 	
 	void Update () {
 		if(OnePlayerAlive()){
-			matchOver = true;
 			txtWinner.gameObject.SetActive(true);
 			foreach(Player player in players)
-				if(!player.isAlive())
+				if(player.isAlive())
 					txtWinner.text = player.name + " WON!\n (Press R to restart)";			
 		}
 
