@@ -31,6 +31,14 @@ public class Player : MonoBehaviour {
 	public float timeToGoFast = 3.5f;
 	/** How much faster can the object go */
 	public float fastRate = 2.0f;
+	/** Rate of particle emission when the player is resting */
+	public float particlesRateRest = 40.0f;
+	/** Particles' speed when the player is resting */
+	public float particlesSpeedRest = 5.0f;
+	/** Rate of particle emission when the player is moving */
+	public float particlesRateMove = 80.0f;
+	/** Particles' speed when the player is moving */
+	public float particlesSpeedMove = 7.5f;
 	public enController controller = enController.CONTROLLER_1;
 
 	private Rigidbody2D rb;
@@ -47,6 +55,7 @@ public class Player : MonoBehaviour {
 	}
 	private float _curInvulnerability;
 	private bool _doGoFast = false;
+	private ParticleSystem _particles;
 
 	public bool canControl;
 
@@ -162,6 +171,7 @@ public class Player : MonoBehaviour {
 	/** Called as soon as the component is instantiated */
 	void Awake() {
 		this.rb = this.GetComponent<Rigidbody2D>();
+		this._particles = this.GetComponentInChildren<ParticleSystem>();
 		this._curHealth = this.initialHealth;
 		this._curInvulnerability = 0.0f;
 		this._itemNotPressed = false;
@@ -173,10 +183,10 @@ public class Player : MonoBehaviour {
 		float maxv;
 		/* Update angle */
 		if(this.isAlive() && this.canControl){
-            if (Input.GetAxisRaw (this._moveAxis) < -deadzone) {
+            if (Input.GetAxisRaw(this._moveAxis) < -deadzone) {
                 this.rb.angularVelocity = this.spinVelocity;
             }
-            else if (Input.GetAxisRaw (this._moveAxis) > deadzone) {
+            else if (Input.GetAxisRaw(this._moveAxis) > deadzone) {
                 this.rb.angularVelocity = -this.spinVelocity;
             }
             else {
@@ -192,6 +202,14 @@ public class Player : MonoBehaviour {
                 force.y = Mathf.Sin(ang);
                 force *= this.acceleration * Time.fixedDeltaTime;
                 this.rb.AddForce(force);
+                /* Update particle settings */
+				this._particles.startSpeed = this.particlesSpeedMove;
+				this._particles.emissionRate = this.particlesRateMove;
+            }
+            else {
+				/* Update particle settings */
+				this._particles.startSpeed = this.particlesSpeedRest;
+				this._particles.emissionRate = this.particlesRateRest;
             }
 		}
 		/* Cap speed */
@@ -244,7 +262,5 @@ public class Player : MonoBehaviour {
 			s.y = 1.0f;
 			this.transform.localScale = s;
 		}
-
-
 	}
 }
