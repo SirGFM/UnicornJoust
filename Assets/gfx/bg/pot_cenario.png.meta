@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 32735e8d0f25e264280399d8751ec2c8
-timeCreated: 1469996770
+guid: 43534ae79ba7168409a55ee187635693
+timeCreated: 1471804107
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -50,7 +50,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites: []
-  spritePackingTag: 
+  spritePackingTag: atlas
   userData: 
   assetBundleName: 
   assetBundleVariant: 
