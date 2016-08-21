@@ -1,10 +1,19 @@
 fileFormatVersion: 2
 guid: ad14fe0c771e8e04c9a80bd1a0ae484b
-timeCreated: 1469940275
+timeCreated: 1471822059
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ready: {fileID: 21300000, guid: 73bf956fe374bbb468bf89cd0a4a93e5, type: 3}
+  - number_1: {fileID: 21300000, guid: f26cab7f66dec484f8bed053b09154eb, type: 3}
+  - number_2: {fileID: 21300000, guid: 861838c38a76fa942a566f3a1ef0a514, type: 3}
+  - number_3: {fileID: 21300000, guid: 682b9f65a273b434793934fd459bed6e, type: 3}
+  - go: {fileID: 21300000, guid: 4559c366493ff7b4ea4dd1abeab89b20, type: 3}
+  - p1_win: {fileID: 21300000, guid: 87114a4dab011f24f87f11f7400ce0c8, type: 3}
+  - p2_win: {fileID: 21300000, guid: 240f2edf64fa38847b97f9475b436644, type: 3}
+  - p3_win: {fileID: 21300000, guid: 22c4fd2833542c541b55183977cdf10a, type: 3}
+  - p4_win: {fileID: 21300000, guid: a7c4d03857d581a4198fca7fe4642f8c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

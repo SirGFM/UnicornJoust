@@ -4,105 +4,105 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	public Player[] players;
+	public Sprite ready;
+	public Sprite number_1;
+	public Sprite number_2;
+	public Sprite number_3;
+	public Sprite go;
+	public Sprite p1_win;
+	public Sprite p2_win;
+	public Sprite p3_win;
+	public Sprite p4_win;
 
-	public UnityEngine.UI.Text txtWinner;
-	public UnityEngine.UI.Text countdown;
+	/* Maximum scale factor during initialization */
+	public float maxScale = 10.0f;
+	/* Scale factor of the "you win" text */
+	public float winScale = 5.0f;
+
+	private Player[] _players;
+	private SpriteRenderer _spr;
+	private Sprite[] _initSprites;
 
 	public string level = "game";
 
-
 	public bool OnePlayerAlive(){
-		int maxPlayers = players.Length;
-		int deadPlayers = 0;
-		foreach(Player player in players){
-			if(!player.isAlive())
-				deadPlayers++;			
+		bool isOneAlive = false;
+		foreach (Player player in this._players) {
+			if (!isOneAlive && player.isAlive()) {
+				isOneAlive = true;
+			}
+			else if (isOneAlive && player.isAlive()){
+				return false;
+			}
 		}
-		if(deadPlayers >= maxPlayers-1)
-			return true;
-		return false;
+		return true;
 	}
 
 	private IEnumerator StartMatch(){
-		float time = 0.0f;
-		countdown.gameObject.SetActive(true);
-		//Part 0: Creating standard values
-		RectTransform r = countdown.gameObject.GetComponent<RectTransform>();
-		Vector3 ctSta = new Vector3(.75f,.75f,.75f);
-		Vector3 ctEnd = new Vector3(1.75f,1.75f,1.75f);
-		//Part 1: Ready
-		while (time < 1f) {
-			r.localScale = Vector3.Lerp(ctSta, ctEnd, TimeToPerc(0f,1f,time));
-			time += Time.deltaTime;
-			yield return null;
+		int i = 0;
+		while (i < this._initSprites.Length) {
+			float time = 0.0f;
+			this._spr.sprite = this._initSprites[i];
+			while (time < 1.0f) {
+				this.transform.localScale = Vector3.one * this.maxScale * time;
+				time += Time.fixedDeltaTime;
+				yield return null;
+			}
+			
+			if (i == this._initSprites.Length - 1) {
+				foreach(Player player in this._players) {
+					player.canControl = true;
+				}
+			}
+			i++;
 		}
-		//Part 2: 3
-		countdown.text = "3";
-		while (time < 2f) {
-			r.localScale = Vector3.Lerp(ctSta, ctEnd, TimeToPerc(1f,2f,time));
-			time += Time.deltaTime;
-			yield return null;
-		}
-		//Part 3: 2
-		countdown.text = "2";
-		while (time < 3f) {
-			r.localScale = Vector3.Lerp(ctSta, ctEnd, TimeToPerc(2f,3f,time));
-			time += Time.deltaTime;
-			yield return null;
-		}
-		//Part 4: 1
-		countdown.text = "1";
-		while (time < 4f) {
-			r.localScale = Vector3.Lerp(ctSta, ctEnd, TimeToPerc(3f,4f,time));
-			time += Time.deltaTime;
-			yield return null;
-		}
-		//Part 5: GO
-		foreach(Player player in players)
-			player.canControl = true;
-		countdown.text = "GO!";
-		while (time < 5f) {
-			r.localScale = Vector3.Lerp(ctSta, ctEnd, TimeToPerc(4f,5f,time));
-			time += Time.deltaTime;
-			yield return null;
-		}
-		//Remove countdown
-		countdown.gameObject.SetActive(false);
+		this._spr.enabled = false;
 	}
  
 	public void Restart(){
 		Application.LoadLevel(level);
 	}
 
-
-	public float TimeToPerc(float start, float end, float now){
-		return (now-start)/(end-start);
-	}
-
-
-
 	/** === UNITY EVENTS ======================================================== */
 
 	void Awake () {
-		players = GameObject.FindObjectsOfType<Player>();
+		this._players = GameObject.FindObjectsOfType<Player>();
+		this._spr = this.gameObject.GetComponent<SpriteRenderer>();
+
+		this._initSprites = new Sprite[5];
+		this._initSprites[0] = this.ready;
+		this._initSprites[1] = this.number_3;
+		this._initSprites[2] = this.number_2;
+		this._initSprites[3] = this.number_1;
+		this._initSprites[4] = this.go;
 	}
 
 	void Start(){
 		StartCoroutine("StartMatch");
 	}
-	
+
 	void Update () {
 		if(OnePlayerAlive()){
-			txtWinner.gameObject.SetActive(true);
-			foreach(Player player in players)
-				if(player.isAlive())
-					txtWinner.text = player.name + " WON!\n (Press R to restart)";			
+			if (this._spr.enabled == false) {
+				this._spr.enabled = true;
+				this.transform.localScale = Vector3.one * this.winScale;
+				foreach (Player player in this._players) {
+					if (!player.isAlive()) {
+						continue;
+					}
+					switch (player.controller) {
+						case Player.enController.CONTROLLER_1: this._spr.sprite = this.p1_win; break;
+						case Player.enController.CONTROLLER_2: this._spr.sprite = this.p2_win; break;
+						case Player.enController.CONTROLLER_3: this._spr.sprite = this.p3_win; break;
+						case Player.enController.CONTROLLER_4: this._spr.sprite = this.p4_win; break;
+					}
+					break;
+				}
+			}
 		}
 
 		if(Input.GetKey(KeyCode.R)){
 			Restart();
 		}
 	}
-
 }
