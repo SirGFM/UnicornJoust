@@ -148,6 +148,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 248506571}
   - 212: {fileID: 248506570}
+  - 114: {fileID: 248506572}
   m_Layer: 0
   m_Name: Press To Play
   m_TagString: Untagged
@@ -193,6 +194,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &248506572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 248506569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982346a93f2ca0643a6d58e1043429f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  hue: 55
+  saturation: .689999998
+  value: 1
+  timeToStart: 4
 --- !u!1 &397349031
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,12 +322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd4cf5f8eaaacd4a890c6e9f435bc0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 1968293787}
-  pressToStart: {fileID: 248506570}
-  speed: 3
-  hue: 55
-  saturation: .689999998
-  value: 1
   timeToStart: 4
 --- !u!4 &794444668
 Transform:
@@ -2936,6 +2947,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1968293788}
   - 212: {fileID: 1968293787}
+  - 114: {fileID: 1968293789}
   m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
@@ -2981,6 +2993,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &1968293789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1968293786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982346a93f2ca0643a6d58e1043429f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  hue: 55
+  saturation: .689999998
+  value: 1
+  timeToStart: 4
 --- !u!1 &1996743659
 GameObject:
   m_ObjectHideFlags: 0
