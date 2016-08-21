@@ -1397,8 +1397,9 @@ MonoBehaviour:
   initialHealth: 2
   invulnerability: 1
   acceleration: .5
-  maxVelocity: 2.5
+  maxVelocity: 2
   spinVelocity: 270
+  pushbackTime: .125
   deadzone: .300000012
   timeToGoFast: 3.5
   fastRate: 2
@@ -1591,8 +1592,9 @@ MonoBehaviour:
   initialHealth: 2
   invulnerability: 1
   acceleration: .5
-  maxVelocity: 2.5
+  maxVelocity: 2
   spinVelocity: 270
+  pushbackTime: .125
   deadzone: .300000012
   timeToGoFast: 3.5
   fastRate: 2
@@ -1940,8 +1942,9 @@ MonoBehaviour:
   initialHealth: 2
   invulnerability: 1
   acceleration: .5
-  maxVelocity: 2.5
+  maxVelocity: 2
   spinVelocity: 270
+  pushbackTime: .125
   deadzone: .300000012
   timeToGoFast: 3.5
   fastRate: 2
@@ -6461,8 +6464,9 @@ MonoBehaviour:
   initialHealth: 2
   invulnerability: 1
   acceleration: .5
-  maxVelocity: 2.5
+  maxVelocity: 2
   spinVelocity: 270
+  pushbackTime: .125
   deadzone: .300000012
   timeToGoFast: 3.5
   fastRate: 2

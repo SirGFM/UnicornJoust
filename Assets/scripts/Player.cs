@@ -22,9 +22,11 @@ public class Player : MonoBehaviour {
 	/** Acceleration in some weird unit */
 	public float acceleration = 0.5f;
 	/** Max velocity in units/s */
-	public float maxVelocity = 3f;
+	public float maxVelocity = 2.0f;
 	/** Spin rate in degree/s (theoretically) */
 	public float spinVelocity = 270.0f;
+	/** For how long the player can be pushed back */
+	public float pushbackTime = 0.125f;
 	/** Input deadzone (0.0f == perfectly-centered, 1.0f == maximum-reach) */
 	public float deadzone = 0.3f;
 	/** For how long should the player move faster (on powerup) */
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour {
 	}
 	private float _curInvulnerability;
 	private bool _doGoFast = false;
+	private bool _onPushback = false;
 	private ParticleSystem _particles;
 
 	public bool canControl;
@@ -78,16 +81,20 @@ public class Player : MonoBehaviour {
 	 * @param  [ in]velocity Velocity by which the player will be pushed back (in units/s)
 	 */
 	public void pushback(Vector2 velocity) {
-		this.StartCoroutine(this._pushback(velocity));
+		if (!this._onPushback) {
+			this.StartCoroutine(this._pushback(velocity));
+		}
 	}
 	private IEnumerator _pushback(Vector2 velocity) {
 		float time = 0.0f;
+		this._onPushback = true;
 		yield return null;
-		while (time < 0.5f) {
-			this.rb.AddForce(velocity * Time.fixedDeltaTime);
+		while (time < this.pushbackTime) {
+			this.rb.AddForce(velocity * 0.5f * Time.fixedDeltaTime);
 			time += Time.fixedDeltaTime;
 			yield return null;
 		}
+		this._onPushback = false;
 	}
 
 	/**
