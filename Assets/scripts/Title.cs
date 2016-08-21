@@ -4,8 +4,8 @@ using System.Collections;
 
 public class Title : MonoBehaviour {
 
-	public Text title;
-	public Text pressToStart;
+	public SpriteRenderer title;
+	public SpriteRenderer pressToStart;
 
 	public float speed = 3.0f;
 	public float hue = 55.0f;
