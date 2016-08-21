@@ -151,6 +151,12 @@ public class Player : MonoBehaviour {
 		foreach(Collider2D col in GetComponentsInChildren<Collider2D>())
 			col.enabled = false;	
 		rb.angularVelocity = Random.Range(1, 10) * 30.0f;
+		/* Remove lance */
+		foreach(Transform t in this.GetComponentInChildren<Transform>()) {
+			if (t.CompareTag("lance")) {
+				t.gameObject.SetActive(false);
+			}
+		}
 	}
 
 	//Set inactive all elements and play death animation
