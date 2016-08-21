@@ -160,7 +160,27 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - m_Icon: {fileID: 0}
+      m_Size: 128
+  - m_BuildTarget: Standalone
+    m_Icons:
+    - m_Icon: {fileID: 2800000, guid: 10436d1cac4fca24e8f1b3785510f499, type: 3}
+      m_Size: 1024
+    - m_Icon: {fileID: 2800000, guid: 89f71b954b1a7fa41b04271ef2a07cb4, type: 3}
+      m_Size: 512
+    - m_Icon: {fileID: 2800000, guid: 0acf6466d443e7c44a0a8155c101a90a, type: 3}
+      m_Size: 256
+    - m_Icon: {fileID: 2800000, guid: dc78b589869ceeb4890a4af10a31562c, type: 3}
+      m_Size: 128
+    - m_Icon: {fileID: 2800000, guid: 572d0fac379b84a4a950a8717f3c3784, type: 3}
+      m_Size: 48
+    - m_Icon: {fileID: 2800000, guid: d434a6cde0052fd47847cfa49bb6caec, type: 3}
+      m_Size: 32
+    - m_Icon: {fileID: 2800000, guid: 23a4dccedc5afb74990990108817cc59, type: 3}
+      m_Size: 16
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   webPlayerTemplate: APPLICATION:Default
