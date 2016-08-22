@@ -42,6 +42,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: bg
+    uniqueID: 3362584801
+    locked: 0
+  - name: particles
+    uniqueID: 162488299
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: frame
+    uniqueID: 3596134441
+    locked: 0
+  - name: ui
+    uniqueID: 640356557
     locked: 0
