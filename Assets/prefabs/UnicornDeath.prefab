@@ -23,9 +23,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118652}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -1.57000005, y: -0, z: -1.97000003}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -206,7 +206,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 2
+      scalar: .75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -292,7 +292,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 50
+      scalar: 75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -336,7 +336,7 @@ ParticleSystem:
   SizeModule:
     enabled: 1
     curve:
-      scalar: 1
+      scalar: .5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -404,7 +404,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       maxGradient:
         key0:
@@ -500,45 +500,40 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 1
   UVModule:
-    enabled: 0
+    enabled: 1
     frameOverTime:
-      scalar: 1
+      scalar: .75
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
           value: 0
-          inSlope: 0
+          inSlope: 1
           outSlope: 1
-          tangentMode: 0
+          tangentMode: 10
         - time: 1
           value: 1
           inSlope: 1
-          outSlope: 0
-          tangentMode: 0
+          outSlope: 1
+          tangentMode: 10
         m_PreInfinity: 2
         m_PostInfinity: 2
       minCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
-        - time: 1
           value: 1
-          inSlope: 1
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 1
-    tilesX: 1
+    tilesX: 8
     tilesY: 1
     animationType: 0
     rowIndex: 0
-    cycles: 1
+    cycles: 100
     randomRow: 1
   VelocityModule:
     enabled: 0
@@ -1092,7 +1087,7 @@ ParticleSystemRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a49a2e0c1f33baa41bab99cba6827cad, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1104,7 +1099,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 162488299
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MaxParticleSize: .5
@@ -1126,6 +1121,14 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.maxCurve.m_Curve.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.minCurve.m_Curve.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_LocalScale.x
       value: 4
       objectReference: {fileID: 0}
@@ -1144,6 +1147,74 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: InitialModule.startSize.scalar
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a49a2e0c1f33baa41bab99cba6827cad, type: 2}
+    - target: {fileID: 0}
+      propertyPath: UVModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.tilesX
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.animationType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.randomRow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.scalar
+      value: .75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.maxCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.maxCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.maxCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.maxCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.minCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.minCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.minCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.minCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.minCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: UVModule.frameOverTime.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: 162488299
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
