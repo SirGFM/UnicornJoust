@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ad8b66fd4bcdd4548b5e07e6bf98d287
-timeCreated: 1472094132
+timeCreated: 1472097715
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -34,6 +34,7 @@ TextureImporter:
     21300054: black_square
     21300056: bg
     21300058: palette
+    21300060: rainbow
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -147,76 +148,6 @@ TextureImporter:
         y: 384
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: warnicorn_atlas_7
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 492
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: warnicorn_atlas_8
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 492
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: warnicorn_atlas_9
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 492
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: warnicorn_atlas_10
-      rect:
-        serializedVersion: 2
-        x: 268
-        y: 492
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: warnicorn_atlas_11
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 492
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: warnicorn_atlas_12
-      rect:
-        serializedVersion: 2
-        x: 276
-        y: 492
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: warnicorn_atlas_13
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 492
-        width: 4
-        height: 4
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -377,6 +308,16 @@ TextureImporter:
         y: 368
         width: 8
         height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: rainbow
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 380
+        width: 512
+        height: 4
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
