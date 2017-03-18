@@ -15,6 +15,8 @@
 		Pass {
 			ZWrite Off
 			Blend SrcAlpha OneMinusSrcAlpha
+			// Enable rendering of polygon's back face (occurs when scale.y == -1)
+			Cull Off
 
 			CGPROGRAM
 			#pragma vertex vert
